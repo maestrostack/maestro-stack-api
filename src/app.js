@@ -50,4 +50,38 @@ app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
 
+
+setTimeout( async () => {
+  const users = await app.service('users').find();
+
+  if(users.total == 0) {
+    const createUsers = [
+      {
+        _id: 'admin',
+        email: 'admin@system.local',
+        password: 'P0pc0rn1',
+        first_name: 'Local',
+        last_name: 'Administrator',
+        locked_out: false,
+        _created_by: 'admin'
+      }
+    ];
+
+    createUsers.forEach( u => {
+      app.service('users').create(u);
+    });
+
+    app.service('groups').create({
+      name: 'Administrators',
+      email: 'admins@system.local',
+      description: 'System Administrators',
+      _manager: 'admin'
+    });
+  }
+
+
+
+
+}, 3000);
+
 module.exports = app;

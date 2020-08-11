@@ -1,4 +1,5 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const populateChildBlocks = require('../../hooks/populate-child-activities');
 
 module.exports = {
   before: {
@@ -13,8 +14,12 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
-    get: [],
+    find: [
+      populateChildBlocks()
+    ],
+    get: [
+      populateChildBlocks()
+    ],
     create: [],
     update: [],
     patch: [],

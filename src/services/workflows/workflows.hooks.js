@@ -1,11 +1,16 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const processNewWorkflow = require('../../hooks/process-new-workflow');
+
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [],
+    create: [
+      
+    ],
     update: [],
     patch: [],
     remove: []
@@ -15,7 +20,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      processNewWorkflow()
+    ],
     update: [],
     patch: [],
     remove: []

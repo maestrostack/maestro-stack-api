@@ -1,5 +1,5 @@
 const users = require('./users/users.service.js');
-const taskQueue = require('./task-queue/task-queue.service.js');
+// const taskQueue = require('./task-queue/task-queue.service.js');
 const customIcons = require('./custom-icons/custom-icons.service.js');
 const maestroStatus = require('./maestro-status/maestro-status.service.js');
 const syslog = require('./syslog/syslog.service.js');
@@ -23,10 +23,14 @@ const workflowActivities = require('./workflow-activities/workflow-activities.se
 const workflowBlockVariables = require('./workflow-block-variables/workflow-block-variables.service.js');
 const workflowBlocks = require('./workflow-blocks/workflow-blocks.service.js');
 const workflows = require('./workflows/workflows.service.js');
+const rolePermissions = require('./role-permissions/role-permissions.service.js');
+const groupMembers = require('./group-members/group-members.service.js');
+const categories = require('./categories/categories.service.js');
+const requestActivities = require('./request-activities/request-activities.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
-  app.configure(taskQueue);
+  // app.configure(taskQueue);
 
   app.configure(customIcons);
   app.configure(maestroStatus);
@@ -51,4 +55,8 @@ module.exports = function (app) {
   app.configure(workflowBlockVariables);
   app.configure(workflowBlocks);
   app.configure(workflows);
+  app.configure(rolePermissions);
+  app.configure(groupMembers);
+  app.configure(categories);
+  app.configure(requestActivities);
 };
